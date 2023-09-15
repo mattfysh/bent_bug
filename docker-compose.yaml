@@ -1,0 +1,8 @@
+services:
+  redis:
+    image: redis
+
+  benthos:
+    image: jeffail/benthos
+    volumes:
+      - ./benthos.yaml:/benthos.yaml

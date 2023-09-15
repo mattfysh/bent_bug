@@ -1,0 +1,21 @@
+input:
+  sequence:
+    inputs:
+      - generate:
+          count: 1
+          mapping: root = 1
+        processors:
+          - redis:
+              url: redis://redis:6379
+              command: ACL
+              args_mapping: root = [ "SETUSER", "default", "-XREADGROUP" ]
+      - redis_streams:
+          url: redis://redis:6379
+          streams: [my_stream]
+          consumer_group: my_group
+
+pipeline:
+  processors: []
+
+output:
+  stdout: {}
